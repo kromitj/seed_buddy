@@ -4,11 +4,12 @@ class SeedBuddy
 	REJECT_TABLES = ["ActiveRecord::SchemaMigration", "ActiveRecord::InternalMetadata", "ApplicationRecord"]
   def initialize()
   	Rails.application.eager_load!
-  	@AR_Models = get_models.map { |ar_model| ARModel.new(ar_model)}
+  	@AR_Models = get_ar_models.map { |ar_model| ARModel.new(ar_model)}
+  	@APIModels = nil
   end
   private
 
-  def get_models
+  def get_ar_models
   	ActiveRecord::Base.descendants.reject { |ar_model| REJECT_TABLES.include?(ar_model.name)}
   end
 
