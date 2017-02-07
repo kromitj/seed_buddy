@@ -1,4 +1,5 @@
 class ARModel
+	attr_reader :schema
 	def initialize(table)
 		@Model = Object.const_get(table.to_s)
 		@assosiations = table.reflections.map do |ass|
@@ -11,7 +12,8 @@ class ARModel
 
 	def get_assossiations(ass)
 		ass_type = get_ass_type(ass[1])
-		{name: ass[1].name, ass_type: ass_type, model_obj: Object.const_get(ass[1].name.capitalize)}
+		singular_upcased_model_name =  ActiveSupport::Inflector.singularize(ass[1].name).camelize  
+		{name: ass[1].name, ass_type: ass_type, model_obj: Object.const_get(singular_upcased_model_name)}
 	end
 
 	def get_ass_type(ass)

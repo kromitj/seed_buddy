@@ -1,15 +1,20 @@
 require 'ar-model'
+require 'api-model'
+require 'buddy-model'
+
 
 class SeedBuddy
 	REJECT_TABLES = ["ActiveRecord::SchemaMigration", "ActiveRecord::InternalMetadata", "ApplicationRecord"]
   def initialize(api_uri)
   	Rails.application.eager_load!
   	@api = api_uri
-  	@AR_Models = get_ar_models.map { |ar_model| ARModel.new(ar_model)}
-  	@APIModels = nil
+  	@Models = get_ar_models.map { |ar_model| BuddyModel.new(ar_model) }
+    @Models.each do |mod|
+      puts mod.ar_model.schema
+    end
   end
 
-  def self.map_api_call(api_uri, api_key=nil, bread_crumbs_to_records=[], bread_crumbs_to_target=[], target_field) # json_nav = ["person", "role"]
+  def self.map_api_response(api_uri, api_key=nil, bread_crumbs_to_records=[], bread_crumbs_to_target=[], target_field)
     json_response = HTTParty.get(api_uri)
     reduced_hash = reduce_hash(json_response, bread_crumbs_to_records)
     reduced_hash.map { |record| reduce_hash(record, bread_crumbs_to_target)[target_field]}
