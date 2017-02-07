@@ -1,10 +1,10 @@
 class ARModel
 	def initialize(table)
-		@Model = table
+		@Model = Object.const_get(table.to_s)
 		@assosiations = table.reflections.map do |ass|
 			get_assossiations(ass)
 		end
-		puts "ar_model: #{@Model}   assosiations: #{@assosiations}"
+		@schema = Hash[*@Model.column_names.group_by { |i| i }.flat_map { |k, v| [k , nil] }] # creates a Hash repres the AR Model with initial values of zero
 	end
 
 	private
