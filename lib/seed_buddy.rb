@@ -1,8 +1,6 @@
-require 'pp'
-require 'ar-model'
-require 'api-model'
-require 'buddy-model'
-
+%w(api-model ar-model buddy-model).each do |file|
+  require "seed-buddy/#{file}"
+end
 
 class SeedBuddy
   attr_accessor :Models, :groups
