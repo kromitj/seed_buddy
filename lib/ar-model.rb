@@ -5,7 +5,11 @@ class ARModel
 		@assosiations = table.reflections.map do |ass|
 			get_assossiations(ass)
 		end
-		@schema = Hash[*@Model.column_names.group_by { |i| i }.flat_map { |k, v| [k , nil] }] # creates a Hash repres the AR Model with initial values of zero
+		@schema = Hash[*@Model.column_names.group_by { |i| i }.flat_map { |k, v| [k , ""] }] # creates a Hash repres the AR Model with initial values of zero
+	end
+
+	def to_json
+		{modle: @Model, associations: @assosiations, schema: @schema}
 	end
 
 	private
