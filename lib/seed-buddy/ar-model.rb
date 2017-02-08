@@ -10,7 +10,7 @@ class SeedBuddy
 		end
 
 		def to_json
-			{modle: @Model, associations: @assosiations, schema: @schema}
+			{modle: @Model, associations: @assosiations, schema: Hash[@schema.sort]}
 		end
 
 		private

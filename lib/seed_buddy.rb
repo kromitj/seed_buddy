@@ -33,7 +33,7 @@ class SeedBuddy
           reduce_hash(record, bread_crumbs_to_target)[target_field]
         end
      end
-# seed.map_group_calls(0, 'https://www.govtrack.us/api/v2/role?current=true&limit=3', nil, ["objects"], ["person"], "id")
+
     def seed_data()
       current_group = @groups.first
         uri_path = current_group[:api_path]
@@ -47,7 +47,7 @@ class SeedBuddy
       key_value = hash_bread_crumbs.shift
       reduced_hash = data_hash.fetch(key_value)
       return reduce_hash(reduced_hash, hash_bread_crumbs)
-end
+    end
 
  
 

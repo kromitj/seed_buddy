@@ -20,7 +20,7 @@ class SeedBuddy
 		end
 
 		def to_json
-			{model: @model, schema: @schema}
+			{model: @model, schema: Hash[@schema.sort]}
 		end
 
 		private
