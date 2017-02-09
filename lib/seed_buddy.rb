@@ -2,6 +2,7 @@
   require "seed-buddy/#{file}"
 end
 
+# Represents the wrapper class for the gem
 class SeedBuddy
   attr_accessor :Models, :groups
 	REJECT_TABLES = ["ActiveRecord::SchemaMigration", "ActiveRecord::InternalMetadata", "ApplicationRecord"]
