@@ -34,7 +34,7 @@ returns this:
 	}
 
 
-http://www.blogworld.com/api/v12/author/
+http://www.blogworld.com/api/v12/author/dimitri
 returns this:
 
 		{	
