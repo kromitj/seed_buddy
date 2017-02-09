@@ -6,8 +6,7 @@
 Example Usage
 
 		Author has_many: posts
-			    belongs_to: :blog
-		Post belongs_to :blog
+		Post belongs_to :author
 
 
 		seeder = SeedBuddy.new("api", "http://www.blogworld.com/api/v12/")
