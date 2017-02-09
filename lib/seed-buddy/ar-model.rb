@@ -8,11 +8,11 @@ class SeedBuddy
 			@assosiations = table.reflections.map do |ass|
 				get_assossiations(ass)
 			end
-			@schema = Hash[*@Model.column_names.group_by { |i| i }.flat_map { |k, v| [k , ""] }] # creates a Hash repres the AR Model with initial values of zero
+			@schema = @Model.column_names
 		end
 		# used to print out current state of Object, used by Parent:BuddyModel#generate_hash
 		def to_json
-			{modle: @Model, associations: @assosiations, schema: Hash[@schema.sort]}
+			{modle: @Model, associations: @assosiations, schema: @schema.sort}
 		end
 
 		private

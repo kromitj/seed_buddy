@@ -4,7 +4,7 @@ class SeedBuddy
 		# model is an model returned by Active Record, 
 		def initialize(model, ar_schema)
 			 @model = model
-			 @schema = generate_schema(ar_schema)
+			 @schema = ar_schema # generate_schema(ar_schema)
 		end
 		# used to differentiat the api models schema from the ar_models
 		def modify_schema_field(mod_field)

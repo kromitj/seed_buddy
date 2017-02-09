@@ -7,6 +7,8 @@ class SeedBuddy
 			@name = model.to_s
 			@ar_model = ARModel.new(model)
 			@api_model = APIModel.new(model, Hash[@ar_model.schema])
+			@field_relationships = generate_field_relationships(@ar_model.schema)
+			puts @field_relationships
 		end
 
 		# used to print out current state of Object, used by Parent:SeedBuddy#generate_hash
@@ -51,6 +53,10 @@ class SeedBuddy
 				end
 			end
 			return current_longest
+		end
+
+		def generate_field_relationships(schema)
+		 schema.map { |field| Hash[field, [field, []]]}
 		end
 
 
