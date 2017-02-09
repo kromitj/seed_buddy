@@ -2,6 +2,7 @@ class SeedBuddy
 	class BuddyModel		
 		attr_reader :ar_model, :name
 		attr_accessor :api_model
+		
 		def initialize(model)
 			@name = model.to_s
 			@ar_model = ARModel.new(model)
