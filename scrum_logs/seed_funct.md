@@ -101,11 +101,13 @@ Need to be able to take the BuddyModels initiated inside SeedBuddy and use there
      end
 
      BuddyModel#dependencies
-
+     	# creates a array with hash elements
+     	# { model: {DependancyModel}, find_by: {find_by_field}}
+     	# find_by is used to query @match_fields and by the dependancy Active Record models #find_by 
      end
 
      BuddyModel#create_dependencies(response)
-     	dependencies = self.dependencies # {model: Person, find_by: :id}}
+     	dependencies = self.dependencies # [{model: Person, find_by: :id}}]
      	 model_dependencies = dependencies[:model].map do |dependency|
      		api_find_by = @match_fields(dependency[:find_by])  # match_fields needs to be a hash with key:ar_field:  value:api_field
      		find_by_value = responce[api_find_by]
@@ -116,12 +118,29 @@ Need to be able to take the BuddyModels initiated inside SeedBuddy and use there
      BuddyModel#dependency()
 
      end
-	
-		BuddyModel#dependencies -> Array[dep_model_name]
-		SeedBuddy#makeApiCall(group_info) -> Hash  json response
-		BuddyModel#match_fields -> Hash {ar_field: api_field} # example {"committee_id": "committee"}
+
+	SeedBuddy#makeApiCall(group_info) -> Hash  json response
+
+	BuddyModel#match_fields -> Hash {ar_field: api_field} # example {"committee_id": "committee"}
 
 ##Final Solution:
+
+
+##End OF Day Progress Log:
+
+Feb-8-2017 Mitch
+
+This is going to require a lot of code overhead and overhaul, hard to keep it all in my head, but hard to break into small progressive pieces...
+
+Need Toos: 
+
+*	look into making to classes less dependant on each other, what I mean is less knowledge of other classes methods, like 		
+	Seedbuddy#seed calls its child class BuddyModel#seed; need to look into ways of avoiding this. Need to
+
+*	On BuddyModel#new, it needs to create an instance variable(@field_relationship) that will connect the fields of the ARModel 		with thier corresponding APIModel fields
+
+*	need to do dependancy data on init instead of during seeding
+
 
 
 
