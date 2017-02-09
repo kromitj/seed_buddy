@@ -228,17 +228,17 @@
 
         <div class="method-description">
           
-          
+          <p>groups together models that seed from the same api call</p>
           
           
 
           
           <div class="method-source-code" id="create_group-source">
-            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_group</span>(<span class="ruby-identifier">group_info</span>)
-      <span class="ruby-identifier">members</span>, <span class="ruby-identifier">api_path</span>, <span class="ruby-identifier">api_calls</span> = <span class="ruby-identifier">group_info</span>[<span class="ruby-value">:members</span>], <span class="ruby-identifier">group_info</span>[<span class="ruby-value">:api_path</span>], <span class="ruby-identifier">group_info</span>[<span class="ruby-value">:api_calls</span>]
-      <span class="ruby-ivar">@groups</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">members</span><span class="ruby-operator">:</span> <span class="ruby-identifier">members</span>, <span class="ruby-identifier">api_path</span><span class="ruby-operator">:</span> <span class="ruby-identifier">api_path</span>, <span class="ruby-identifier">api_calls</span><span class="ruby-operator">:</span> []}
-   <span class="ruby-keyword">end</span></pre>
+    <span class="ruby-identifier">members</span>, <span class="ruby-identifier">api_path</span>, <span class="ruby-identifier">api_calls</span> = <span class="ruby-identifier">group_info</span>[<span class="ruby-value">:members</span>], <span class="ruby-identifier">group_info</span>[<span class="ruby-value">:api_path</span>], <span class="ruby-identifier">group_info</span>[<span class="ruby-value">:api_calls</span>]
+    <span class="ruby-ivar">@groups</span> <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">members</span><span class="ruby-operator">:</span> <span class="ruby-identifier">members</span>, <span class="ruby-identifier">api_path</span><span class="ruby-operator">:</span> <span class="ruby-identifier">api_path</span>, <span class="ruby-identifier">api_calls</span><span class="ruby-operator">:</span> []}
+ <span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>
@@ -262,13 +262,15 @@
 
         <div class="method-description">
           
-          
+          <p>used to create a file with a json representation of <a
+href="SeedBuddy.html">SeedBuddy</a> object. Would be used to custumize the
+set-up easily and  visualy, then sent in as an argument</p>
           
           
 
           
           <div class="method-source-code" id="generate_json-source">
-            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 55</span>
+            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_json</span>
   <span class="ruby-identifier">models</span> = <span class="ruby-ivar">@Models</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">model</span><span class="ruby-operator">|</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">to_json</span>}
   <span class="ruby-identifier">json_obj</span> = {<span class="ruby-identifier">models</span><span class="ruby-operator">:</span> <span class="ruby-identifier">models</span>, <span class="ruby-identifier">groups</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@groups</span>}
@@ -298,17 +300,17 @@
 
         <div class="method-description">
           
-          
+          <p>takes in a name and returns a <a
+href="SeedBuddy/BuddyModel.html">BuddyModel</a> with same name</p>
           
           
 
           
           <div class="method-source-code" id="get_model-source">
-            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 18</span>
+            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_model</span>(<span class="ruby-identifier">name</span>)
   <span class="ruby-ivar">@Models</span>.<span class="ruby-identifier">find</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">model</span><span class="ruby-operator">|</span> 
     <span class="ruby-identifier">model</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">name</span>
-
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -334,19 +336,20 @@
 
         <div class="method-description">
           
-          
+          <p>creates an array of values that are used make api calls to multiple
+resources e.g [1,2,3,4,4] …/v2/person/1 …/v2/person/2</p>
           
           
 
           
           <div class="method-source-code" id="map_group_calls-source">
-            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 30</span>
+            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">map_group_calls</span>(<span class="ruby-identifier">group_num</span>, <span class="ruby-identifier">api_uri</span>, <span class="ruby-identifier">api_key</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">bread_crumbs_to_records</span>=[], <span class="ruby-identifier">bread_crumbs_to_target</span>=[], <span class="ruby-identifier">target_field</span>)
-   <span class="ruby-identifier">json_response</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-constant">HTTParty</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">api_uri</span>)]
-   <span class="ruby-identifier">reduced_hash</span> = <span class="ruby-identifier">reduce_hash</span>(<span class="ruby-constant">Hash</span>[<span class="ruby-identifier">json_response</span>], <span class="ruby-identifier">bread_crumbs_to_records</span>)
-   <span class="ruby-ivar">@groups</span>[<span class="ruby-identifier">group_num</span>][<span class="ruby-value">:api_calls</span>] = <span class="ruby-identifier">reduced_hash</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span> 
-     <span class="ruby-identifier">reduce_hash</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">bread_crumbs_to_target</span>)[<span class="ruby-identifier">target_field</span>]
-   <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">json_response</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-constant">HTTParty</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">api_uri</span>)]
+  <span class="ruby-identifier">reduced_hash</span> = <span class="ruby-identifier">reduce_hash</span>(<span class="ruby-constant">Hash</span>[<span class="ruby-identifier">json_response</span>], <span class="ruby-identifier">bread_crumbs_to_records</span>)
+  <span class="ruby-ivar">@groups</span>[<span class="ruby-identifier">group_num</span>][<span class="ruby-value">:api_calls</span>] = <span class="ruby-identifier">reduced_hash</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span> 
+    <span class="ruby-identifier">reduce_hash</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">bread_crumbs_to_target</span>)[<span class="ruby-identifier">target_field</span>]
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -371,13 +374,13 @@
 
         <div class="method-description">
           
-          
+          <p>reduces the json response to the desired subschema</p>
           
           
 
           
           <div class="method-source-code" id="reduce_hash-source">
-            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 46</span>
+            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reduce_hash</span>(<span class="ruby-identifier">data_hash</span>, <span class="ruby-identifier">hash_bread_crumbs</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">data_hash</span>[<span class="ruby-identifier">hash_bread_crumbs</span>.<span class="ruby-identifier">first</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">hash_bread_crumbs</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-comment"># the map function destroys the breadcrumbs array</span>
   <span class="ruby-identifier">key_value</span> = <span class="ruby-identifier">hash_bread_crumbs</span>.<span class="ruby-identifier">shift</span>
@@ -407,20 +410,21 @@
 
         <div class="method-description">
           
-          
+          <p>iterates through each group and iterates then iterates through each groups
+api_calls,</p>
           
           
 
           
           <div class="method-source-code" id="seed_data-source">
-            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 38</span>
+            <pre><span class="ruby-comment"># File lib/seed_buddy.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">seed_data</span>()
   <span class="ruby-identifier">current_group</span> = <span class="ruby-ivar">@groups</span>.<span class="ruby-identifier">first</span>
     <span class="ruby-identifier">uri_path</span> = <span class="ruby-identifier">current_group</span>[<span class="ruby-value">:api_path</span>]
     <span class="ruby-identifier">current_group</span>[<span class="ruby-value">:api_calls</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">call</span><span class="ruby-operator">|</span>
       <span class="ruby-comment"># legislator_response = HTTParty.get(uri_path + call.to_s)</span>
     <span class="ruby-keyword">end</span>    
- <span class="ruby-keyword">end</span></pre>
+<span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>

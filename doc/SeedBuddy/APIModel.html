@@ -147,13 +147,13 @@
 
         <div class="method-description">
           
-          
+          <p>model is an model returned by Active Record,</p>
           
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/seed-buddy/api-model.rb, line 4</span>
+            <pre><span class="ruby-comment"># File lib/seed-buddy/api-model.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">model</span>, <span class="ruby-identifier">ar_schema</span>)
          <span class="ruby-ivar">@model</span> = <span class="ruby-identifier">model</span>
          <span class="ruby-ivar">@schema</span> = <span class="ruby-identifier">generate_schema</span>(<span class="ruby-identifier">ar_schema</span>)
@@ -189,13 +189,13 @@
 
         <div class="method-description">
           
-          
+          <p>used to differentiat the api models schema from the ar_models</p>
           
           
 
           
           <div class="method-source-code" id="modify_schema_field-source">
-            <pre><span class="ruby-comment"># File lib/seed-buddy/api-model.rb, line 9</span>
+            <pre><span class="ruby-comment"># File lib/seed-buddy/api-model.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">modify_schema_field</span>(<span class="ruby-identifier">mod_field</span>)
         <span class="ruby-identifier">old_key</span>, <span class="ruby-identifier">new_key</span> = <span class="ruby-identifier">mod_field</span>.<span class="ruby-identifier">first</span>[<span class="ruby-value">:old_key</span>], <span class="ruby-identifier">mod_field</span>.<span class="ruby-identifier">first</span>[<span class="ruby-value">:new_key</span>]
         <span class="ruby-ivar">@schema</span>[<span class="ruby-identifier">new_key</span>] = <span class="ruby-ivar">@schema</span>[<span class="ruby-identifier">old_key</span>]
@@ -224,13 +224,13 @@
 
         <div class="method-description">
           
-          
+          <p>allows mass assignment of modifications to the schema</p>
           
           
 
           
           <div class="method-source-code" id="modify_schema_fields-source">
-            <pre><span class="ruby-comment"># File lib/seed-buddy/api-model.rb, line 15</span>
+            <pre><span class="ruby-comment"># File lib/seed-buddy/api-model.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">modify_schema_fields</span>(<span class="ruby-identifier">mods</span>)
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">mods</span>.<span class="ruby-identifier">empty?</span>
         <span class="ruby-identifier">mod_field</span> = <span class="ruby-identifier">mods</span>.<span class="ruby-identifier">shift</span>
@@ -260,13 +260,14 @@
 
         <div class="method-description">
           
-          
+          <p>used to print out current state of Object, used by
+Parent:BuddyModel#generate_hash</p>
           
           
 
           
           <div class="method-source-code" id="to_json-source">
-            <pre><span class="ruby-comment"># File lib/seed-buddy/api-model.rb, line 22</span>
+            <pre><span class="ruby-comment"># File lib/seed-buddy/api-model.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_json</span>
         {<span class="ruby-identifier">model</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@model</span>, <span class="ruby-identifier">schema</span><span class="ruby-operator">:</span> <span class="ruby-constant">Hash</span>[<span class="ruby-ivar">@schema</span>.<span class="ruby-identifier">sort</span>]}
 <span class="ruby-keyword">end</span></pre>

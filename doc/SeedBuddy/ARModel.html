@@ -88,6 +88,8 @@
 
   <section class="description">
     
+<p>a class that encapsolates an Active Record Model object</p>
+
   </section>
 
   
@@ -149,9 +151,10 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/seed-buddy/ar-model.rb, line 4</span>
+            <pre><span class="ruby-comment"># File lib/seed-buddy/ar-model.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">table</span>)
         <span class="ruby-ivar">@Model</span> = <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">table</span>.<span class="ruby-identifier">to_s</span>)
+        <span class="ruby-comment"># creates assossiates from the AR Model</span>
         <span class="ruby-ivar">@assosiations</span> = <span class="ruby-identifier">table</span>.<span class="ruby-identifier">reflections</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ass</span><span class="ruby-operator">|</span>
                 <span class="ruby-identifier">get_assossiations</span>(<span class="ruby-identifier">ass</span>)
         <span class="ruby-keyword">end</span>
@@ -188,13 +191,14 @@
 
         <div class="method-description">
           
-          
+          <p>used to print out current state of Object, used by
+Parent:BuddyModel#generate_hash</p>
           
           
 
           
           <div class="method-source-code" id="to_json-source">
-            <pre><span class="ruby-comment"># File lib/seed-buddy/ar-model.rb, line 12</span>
+            <pre><span class="ruby-comment"># File lib/seed-buddy/ar-model.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_json</span>
         {<span class="ruby-identifier">modle</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@Model</span>, <span class="ruby-identifier">associations</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@assosiations</span>, <span class="ruby-identifier">schema</span><span class="ruby-operator">:</span> <span class="ruby-constant">Hash</span>[<span class="ruby-ivar">@schema</span>.<span class="ruby-identifier">sort</span>]}
 <span class="ruby-keyword">end</span></pre>

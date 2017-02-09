@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.authors     = ["Mitch Kroska"]
   s.email       = 'kromitj@gmail.com'
   s.files       = ["lib/seed_buddy.rb"]
-  s.homepage    =
-    'http://rubygems.org/gems/seed_file'
+  s.homepage    = 'http://rubygems.org/gems/seed_file'
   s.license       = 'MIT'
 end

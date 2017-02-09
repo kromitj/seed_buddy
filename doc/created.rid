@@ -1,13 +1,11 @@
-Thu, 09 Feb 2017 00:22:09 -0700
+Thu, 09 Feb 2017 12:37:38 -0700
 ./gem_structure.md	Tue, 07 Feb 2017 01:38:29 -0700
-./lib/seed-buddy/api-model.rb	Tue, 07 Feb 2017 18:42:34 -0700
-./lib/seed-buddy/apiable.rb	Tue, 07 Feb 2017 18:29:25 -0700
-./lib/seed-buddy/ar-model.rb	Tue, 07 Feb 2017 18:42:34 -0700
-./lib/seed-buddy/buddy-model.rb	Wed, 08 Feb 2017 18:24:03 -0700
-./lib/seed-buddy/faker-model.rb	Tue, 07 Feb 2017 18:29:25 -0700
-./lib/seed_buddy.rb	Thu, 09 Feb 2017 00:22:07 -0700
+./lib/seed-buddy/api-model.rb	Thu, 09 Feb 2017 12:22:30 -0700
+./lib/seed-buddy/ar-model.rb	Thu, 09 Feb 2017 12:29:14 -0700
+./lib/seed-buddy/buddy-model.rb	Thu, 09 Feb 2017 12:11:28 -0700
+./lib/seed_buddy.rb	Thu, 09 Feb 2017 12:37:31 -0700
 ./README.md	Tue, 07 Feb 2017 18:29:25 -0700
-./scrum_logs/seed_funct.md	Wed, 08 Feb 2017 18:42:00 -0700
+./scrum_logs/seed_funct.md	Thu, 09 Feb 2017 00:26:39 -0700
 ./seed_buddy-0.0.0.gem	Sat, 04 Feb 2017 22:35:42 -0700
-./seed_buddy.gemspec	Sat, 04 Feb 2017 23:28:27 -0700
-./TODO.md	Wed, 08 Feb 2017 18:24:03 -0700
+./seed_buddy.gemspec	Thu, 09 Feb 2017 12:29:20 -0700
+./TODO.md	Thu, 09 Feb 2017 00:26:39 -0700
