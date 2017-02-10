@@ -31,7 +31,7 @@ class SeedBuddy
   # creates an array of values that are used make api calls to multiple resources
   # e.g [1,2,3,4,4] .../v2/person/1 .../v2/person/2
   def map_group_calls(group_num, api_uri, api_key=nil, bread_crumbs_to_records=[], bread_crumbs_to_target=[], target_field)
-    json_response = Hash[HTTParty.get(api_uri)]
+    json_response = HTTParty.get(api_uri).parsed_response
     reduced_hash = reduce_hash(Hash[json_response], bread_crumbs_to_records)
     @groups[group_num][:api_calls] = reduced_hash.map do |record| 
       reduce_hash(record, bread_crumbs_to_target)[target_field]

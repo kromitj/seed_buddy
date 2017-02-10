@@ -6,6 +6,8 @@ Repo: https://github.com/kromitj/seed_buddy
 
 Branch: seed_func
 
+Status: In Design
+
 ##Problem/Task:
 
 Seeding the models inside SeedBuddy instance
