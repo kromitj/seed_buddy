@@ -6,7 +6,10 @@ class SeedBuddy
 		def initialize(model)
 			@name = model.to_s
 			@ar_model = ARModel.new(model)
-			@api_model = APIModel.new(model, Hash[@ar_model.schema])
+			
+
+
+      @api_model = APIModel.new(model, Hash[@ar_model.schema])
 			@field_relationships = generate_field_relationships(@ar_model.schema)
 			puts @field_relationships
 		end
